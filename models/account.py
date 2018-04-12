@@ -230,6 +230,6 @@ class AccountJournal(models.Model):
     rango_final_gface = fields.Integer('Rango Final GFACE', copy=False)
     numero_establecimiento_gface = fields.Char('Numero Establecimiento GFACE', copy=False)
     dispositivo_gface = fields.Char('Dispositivo GFACE', copy=False)
-    tipo_documento_gface = fields.Selection([('FACE63', 'FACE63'),('NCE64', 'NCE64')], 'Tipo de Documento GFACE', copy=False)
+    tipo_documento_gface = fields.Selection([('FACE63', 'FACE63'),('FACE66', 'FACE66'),('NCE64', 'NCE64')], 'Tipo de Documento GFACE', copy=False)
 
 # http://soporte.solucionesprisma.com:5010/web/content/pos.order/6/pdf_gface
