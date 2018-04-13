@@ -196,7 +196,7 @@ class AccountInvoice(models.Model):
                     Texto.text = factura.comment
 
                 xmls = etree.tostring(FactDocGT, xml_declaration=True, encoding="UTF-8", pretty_print=True)
-                wsdl = 'http://test.documentagface.com/mx.com.fact.wsfront/FactWSFront.asmx?wsdl'
+                wsdl = 'https://www.documentagface.com/mx.com.fact.wsfront/FactWSFront.asmx?wsdl'
                 client = zeep.Client(wsdl=wsdl)
 
                 resultado = client.service.RequestTransaction(factura.journal_id.requestor_gface, "CONVERT_NATIVE_XML", "GT", factura.journal_id.nit_gface, factura.journal_id.requestor_gface, factura.journal_id.usuario_gface, xmls, "XML,PDF", "")
