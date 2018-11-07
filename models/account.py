@@ -203,6 +203,7 @@ class AccountInvoice(models.Model):
                     Texto.text = factura.comment
 
                 xmls = etree.tostring(FactDocGT, xml_declaration=True, encoding="UTF-8", pretty_print=True)
+                logging.warn(xmls)
                 wsdl = 'https://www.documentagface.com/mx.com.fact.wsfront/FactWSFront.asmx?wsdl'
                 client = zeep.Client(wsdl=wsdl)
 
