@@ -232,7 +232,7 @@ class AccountJournal(models.Model):
     nit_gface = fields.Char('NIT GFACE', copy=False)
     serie_gface = fields.Char('Serie GFACE', copy=False)
     numero_autorizacion_gface = fields.Char('Numero Autorización GFACE', copy=False)
-    fecha_resolucion_gface = fields.Char('Fecha Resolución GFACE', copy=False)
+    fecha_resolucion_gface = fields.Date('Fecha Resolución GFACE', copy=False)
     rango_inicial_gface = fields.Integer('Rango Inicial GFACE', copy=False)
     rango_final_gface = fields.Integer('Rango Final GFACE', copy=False)
     numero_establecimiento_gface = fields.Char('Numero Establecimiento GFACE', copy=False)
