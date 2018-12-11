@@ -113,6 +113,7 @@ class AccountInvoice(models.Model):
                     total_linea_base = precio_unitario_base * linea.quantity
 
                     total_impuestos = total_linea - total_linea_base
+                    tasa = "12" if total_impuestos > 0 else "0"
 
                     Detalle = etree.SubElement(Detalles, "Detalle")
                     Descripcion = etree.SubElement(Detalle, "Descripcion")
@@ -140,7 +141,7 @@ class AccountInvoice(models.Model):
                     TotalDeImpuestosDetalle = etree.SubElement(ImpuestosDetalle, "TotalDeImpuestos")
                     TotalDeImpuestosDetalle.text = str(total_impuestos)
                     IngresosNetosGravadosDetalle = etree.SubElement(ImpuestosDetalle, "IngresosNetosGravados")
-                    IngresosNetosGravadosDetalle.text = str(total_linea_base)
+                    IngresosNetosGravadosDetalle.text = str(total_linea_base) if total_impuestos > 0 else "0"
                     TotalDeIVADetalle = etree.SubElement(ImpuestosDetalle, "TotalDeIVA")
                     TotalDeIVADetalle.text = str(total_impuestos)
 
@@ -160,10 +161,10 @@ class AccountInvoice(models.Model):
                     else:
                         Categoria.text = "SERVICIO"
 
-                    if linea.product_id.default_code:
+                    if linea.name[65:1000]:
                         TextosDePosicion = etree.SubElement(Detalle, "TextosDePosicion")
                         Texto = etree.SubElement(TextosDePosicion, "Texto")
-                        Texto.text = linea.product_id.default_code
+                        Texto.text = linea.name[65:1000]
 
                     total += total_linea
                     subtotal += total_linea_base
@@ -178,7 +179,7 @@ class AccountInvoice(models.Model):
                 TotalDeImpuestos = etree.SubElement(Impuestos, "TotalDeImpuestos")
                 TotalDeImpuestos.text = str(total - subtotal)
                 IngresosNetosGravados = etree.SubElement(Impuestos, "IngresosNetosGravados")
-                IngresosNetosGravados.text = str(subtotal)
+                IngresosNetosGravados.text = str(subtotal) if total - subtotal > 0 else "0"
                 TotalDeIVA = etree.SubElement(Impuestos, "TotalDeIVA")
                 TotalDeIVA.text = str(total - subtotal)
 
