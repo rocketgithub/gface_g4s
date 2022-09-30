@@ -12,8 +12,8 @@ import base64
 import logging
 import zeep
 
-class AccountInvoice(models.Model):
-    _inherit = "account.invoice"
+class AccountMove(models.Model):
+    _inherit = "account.move"
 
     firma_gface = fields.Char('Firma GFACE', copy=False)
     pdf_gface = fields.Binary('PDF GFACE', copy=False)
